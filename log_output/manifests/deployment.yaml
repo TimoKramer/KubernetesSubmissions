@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-output
+  labels:
+    app.kubernetes.io/name: "log-output"
+    app.kubernetes.io/version: "1.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-output
+  template:
+    metadata:
+      labels:
+        app: log-output
+        version: "1.1"
+    spec:
+      containers:
+      - image: ghcr.io/timokramer/log_output:1.1
+        imagePullPolicy: Always
+        name: log-output
