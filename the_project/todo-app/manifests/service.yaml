@@ -4,7 +4,7 @@ metadata:
   name: todo-app
   labels:
     app.kubernetes.io/name: "todo-app"
-    app.kubernetes.io/version: "1.2"
+    app.kubernetes.io/version: "1.4"
 spec:
   type: ClusterIP
   selector:
