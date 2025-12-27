@@ -17,6 +17,6 @@ spec:
         version: "1.1"
     spec:
       containers:
-      - image: ghcr.io/timokramer/log_output:1.1
+      - image: ghcr.io/timokramer/log-output:1.1
         imagePullPolicy: Always
         name: log-output
