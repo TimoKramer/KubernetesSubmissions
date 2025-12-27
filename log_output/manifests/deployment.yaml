@@ -4,7 +4,7 @@ metadata:
   name: log-output
   labels:
     app.kubernetes.io/name: "log-output"
-    app.kubernetes.io/version: "1.0"
+    app.kubernetes.io/version: "1.3"
 spec:
   replicas: 1
   selector:
@@ -14,9 +14,9 @@ spec:
     metadata:
       labels:
         app: log-output
-        version: "1.1"
+        version: "1.3"
     spec:
       containers:
-      - image: ghcr.io/timokramer/log-output:1.1
+      - image: ghcr.io/timokramer/log-output:1.3
         imagePullPolicy: Always
         name: log-output
