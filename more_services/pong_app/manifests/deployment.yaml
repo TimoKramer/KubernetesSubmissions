@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pong-app
+  labels:
+    app.kubernetes.io/name: "pong-app"
+    app.kubernetes.io/version: "1.9"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pong-app
+  template:
+    metadata:
+      labels:
+        app: pong-app
+        version: "1.9"
+    spec:
+      containers:
+      - image: ghcr.io/timokramer/pong-app:1.9
+        imagePullPolicy: Always
+        name: pong-app

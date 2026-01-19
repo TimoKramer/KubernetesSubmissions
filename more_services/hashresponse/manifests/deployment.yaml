@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hashresponse
+  labels:
+    app.kubernetes.io/name: "hashresponse"
+    app.kubernetes.io/version: "1.9"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hashresponse
+  template:
+    metadata:
+      labels:
+        app: hashresponse
+        version: "1.9"
+    spec:
+      containers:
+      - image: ghcr.io/timokramer/hashresponse:1.9
+        imagePullPolicy: Always
+        name: hashresponse
