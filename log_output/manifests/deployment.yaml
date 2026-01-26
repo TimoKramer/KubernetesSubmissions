@@ -1,10 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: log-output
-  labels:
-    app.kubernetes.io/name: "log-output"
-    app.kubernetes.io/version: "1.7"
+  name: log-output-dep
 spec:
   replicas: 1
   selector:
@@ -14,9 +11,23 @@ spec:
     metadata:
       labels:
         app: log-output
-        version: "1.7"
     spec:
+      volumes: # Define volume
+        - name: shared-image
+          emptyDir: {}
       containers:
-      - image: ghcr.io/timokramer/log-output:1.7
-        imagePullPolicy: Always
-        name: log-output
+        - name: producer
+          image: ghcr.io/timokramer/log-output-producer:1.10
+          imagePullPolicy: Always
+          volumeMounts: # Mount volume
+          - name: shared-image
+            mountPath: /usr/src/app/files
+        - name: consumer
+          image: ghcr.io/timokramer/log-output-consumer:1.10
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8090
+              name: response-http
+          volumeMounts: # Mount volume
+          - name: shared-image
+            mountPath: /usr/src/app/files
