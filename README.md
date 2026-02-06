@@ -15,3 +15,4 @@
 - [1.9.](https://github.com/timokramer/KubernetesSubmissions/tree/1.9/more_services)
 - [1.10.](https://github.com/timokramer/KubernetesSubmissions/tree/1.10/log_output)
 - [1.11.](https://github.com/timokramer/KubernetesSubmissions/tree/1.11/1_11_persisting_data)
+- [1.12.](https://github.com/timokramer/KubernetesSubmissions/tree/1.12/the_project)
