@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: persisting-data-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: persisting-data
+  template:
+    metadata:
+      labels:
+        app: persisting-data
+    spec:
+      volumes: # Define volume
+        - name: shared-image
+          persistentVolumeClaim:
+            claimName: persisting-data-claim
+      containers:
+        - name: pong
+          image: ghcr.io/timokramer/pong-app:1.11
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8090
+              name: pong-http
+          volumeMounts: # Mount volume
+          - name: shared-image
+            mountPath: /usr/src/app/files
+        - name: log-output
+          image: ghcr.io/timokramer/log-output:1.11
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8091
+              name: response-http
+          volumeMounts: # Mount volume
+          - name: shared-image
+            mountPath: /usr/src/app/files
